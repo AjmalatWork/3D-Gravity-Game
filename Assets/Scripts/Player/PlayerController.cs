@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,16 @@ public class PlayerController : MonoBehaviour
     {
         movement.HandleMovement();
         playerGravity.HandleGravity();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     void CheckWinCondition()
@@ -34,6 +45,7 @@ public class PlayerController : MonoBehaviour
         {
             timerText.text = "You Win";
             timerText.color = Color.yellow;
+            Time.timeScale = 0f;
         }
     }
 }
